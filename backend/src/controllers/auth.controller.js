@@ -38,12 +38,12 @@ const handleSignup = async (req, res)=>{
             });
         }
         else{
-            res.status(400).json({msg:"invalid user data"});
+            res.status(400).json({message:"invalid user data"});
         }
     }
     catch(err){
         console.log("some error occurred in the controller while signing up", err);
-        res.status(500).json({msg:"internal server error"});
+        res.status(500).json({message:"internal server error"});
     }
 }
 const handleLogin = async (req, res)=>{
@@ -55,7 +55,9 @@ const handleLogin = async (req, res)=>{
             return res.status(400).json({message:"Invalid credentials"});
         }
         const isPasswordCorrect = await bcrypt.compare(password, user.password);
+        
         if(!isPasswordCorrect){
+            // console.log("incorrect password attempt");
             return res.status(400).json({message:"Invalid credentials"});
         }
 
