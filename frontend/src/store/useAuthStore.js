@@ -53,7 +53,7 @@ const useAuthStore = create((set, get)=>({
             set({authUser:res.data});
             get().connectSocket();
         }catch(err){
-            toast.error("login failed...");
+            toast.error(err.response.data.message);
             console.log(err);
         }finally{
             set({isLoggingIn:false});
